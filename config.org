@@ -1,3 +1,25 @@
+
+* Package Sources
+#+BEGIN_SRC emacs-lisp
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("melpa" . "http://melpa.org/packages/")
+                         ("org" . "http://orgmode.org/elpa/")))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(use-package delight :ensure t)
+(use-package use-package-ensure-system-package :ensure t)
+#+END_SRC
+* Customization
+#+BEGIN_SRC emacs-lisp
+(setq-default custom-file (expand-file-name "custom.el" user-emacs-directory))
+(when (file-exists-p custom-file)
+  (load custom-file t))
+#+END_SRC
 * Ending up
 #+BEGIN_SRC emacs-lisp
   (use-package async)
@@ -124,8 +146,6 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (setq inhibit-startup-message t)
-(add-to-list 'default-frame-alist '(background-color . "#0a0a0a"))
-(add-to-list 'default-frame-alist '(border-color . "#0a0a0a"))
 #+END_SRC
 
 * Packages
@@ -515,62 +535,30 @@
 * modeline
 ** spacemacs modeline
 #+BEGIN_SRC emacs-lisp
-  (use-package spaceline
-    :ensure t
-    :config
-    (require 'spaceline-config)
-    (setq powerline-default-separator (quote arrow))
-    (spaceline-spacemacs-theme))
-
-(spaceline-compile
-  ; left side
-  '(((persp-name
-      workspace-number
-      window-number)
-     :fallback evil-state
-     :face highlight-face
-     :priority 100)
-    (evil-state :priority 95)
-    auto-compile
-    ((buffer-modified buffer-size buffer-id remote-host)
-     :priority 98)
-    (major-mode :priority 79)
-    (process :when active)
-    ((flycheck-error flycheck-warning flycheck-info)
-     :when active
-     :priority 89)
-    (minor-modes :when active
-                 :priority 9)
-    (mu4e-alert-segment :when active)
-    (erc-track :when active)
-    (version-control :when active
-                     :priority 78)
-    (org-pomodoro :when active)
-    (org-clock :when active)
-    nyan-cat)
-  ; right side
-  '(which-function
-    (python-pyvenv :fallback python-pyenv)
-    (purpose :priority 94)
-    (battery :when active)
-    (selection-info :priority 95)
-    ((buffer-encoding-abbrev
-      point-position
-      line-column)
-     :separator " | "
-     :priority 96)
-    (global :when active)
-    (buffer-position :priority 99)
-    (hud :priority 99)
-))
+   (use-package spaceline
+       :ensure t
+       :config
+       (require 'spaceline-config)
+       (setq powerline-default-separator (quote arrow))
+       (spaceline-spacemacs-theme))
 #+END_SRC
 ** diminish
 #+BEGIN_SRC emacs-lisp
-  ;;(use-package diminish
-    ;;:ensure t
-    ;;:init
-    ;;(diminish 'beacon-mode)
-    ;;(diminish 'which-key-mode))
+  (use-package diminish
+    :ensure t
+    :init
+    (diminish 'beacon-mode)
+    (diminish 'which-key-mode)
+    (diminish 'company-mode)
+    (diminish 'abbrev-mode)
+    (diminish 'flyspell-mode)
+    (diminish 'flycheck-mode)
+    (diminish 'hungry-delete-mode)
+    (diminish 'counsel-mode)
+    (diminish 'eldoc-mode)
+    (diminish 'undo-tree-mode)
+    (diminish 'org-indent-mode)
+    (diminish 'auto-fill-mode))
 #+END_SRC
 * demu
 #+BEGIN_SRC emacs-lisp
@@ -978,3 +966,17 @@
   (use-package ivy-yasnippet :after yasnippet)
   (use-package react-snippets :after yasnippet)
 #+END_SRC
+* Theme
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme `tron t)
+#+END_SRC
+
+* Line numbers
+#+BEGIN_SRC emacs-lisp
+(use-package nlinum
+:ensure t)
+#+END_SRC
+
+* Hooks
+  (add-hook 'prog-mode-hook 'nlinum-mode)
