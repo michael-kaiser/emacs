@@ -3,6 +3,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(TeX-PDF-mode t)
+ '(TeX-auto-save t)
+ '(TeX-byte-compile t)
+ '(TeX-clean-confirm nil)
+ '(TeX-master (quote dwim))
+ '(TeX-parse-self t)
+ '(TeX-source-correlate-mode t)
+ '(TeX-view-program-selection (quote ((output-pdf "Evince") (output-html "xdg-open"))))
  '(abbrev-file-name "/home/michael/.emacs.d/.abbrev_defs")
  '(aggressive-indent-comments-too nil)
  '(auto-revert-verbose nil)
@@ -87,6 +95,9 @@
  '(org-use-effective-time t)
  '(org-use-speed-commands (quote my/org-use-speed-commands-for-headings-and-lists))
  '(org-yank-adjusted-subtrees t)
+ '(package-selected-packages
+   (quote
+    (latex-preview-pane latex-preview-pane-mode yarn-mode yaml-mode vue-mode tide sql-indent plantuml-mode ac-php markdown-mode lua-mode json-mode company-tern tern xref-js2 js2-refactor js2-mode prettier-js gradle-mode company-emacs-eclim eclim dockerfile-mode csv-mode scss-mode emmet-mode company-anaconda anaconda-mode company-math company-auctex auctex yasnippet-snippets winum which-key webpaste web-mode use-package-ensure-system-package toc-org symon switch-window sudo-edit spacemacs-theme spaceline solarized-theme smex smartparens smart-mode-line react-snippets rainbow-mode rainbow-delimiters projectile pdf-tools org-plus-contrib org-bullets nord-theme nlinum neotree move-text magit lorem-ipsum ivy-yasnippet ivy-rich ivy-pass imgbb ido-vertical-mode hungry-delete git-timemachine git-gutter flyspell-correct-ivy flycheck exwm evil dracula-theme dmenu diminish delight dashboard counsel company color-theme-sanityinc-tomorrow beacon avy aggressive-indent)))
  '(pdf-view-display-size (quote fit-page))
  '(pdf-view-resize-factor 1.1)
  '(pdf-view-use-unicode-ligther nil)
